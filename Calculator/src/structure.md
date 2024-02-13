@@ -5,16 +5,18 @@
 
     - Abstract class
                     ↓
-         - Calculator frame
          - Calculator Input
 
-    - Arithmetic Interface
-                    ↓
-        - Arithmetic Section
+         - Calculator Frame
+                        ↓
+            - Arithmetic Interface
+                        ↓
+                - Arithmetic Section
 
-    - Scientific Interface
-                    ↓
-        - Scientific Section
+            - Scientific Interface
+                        ↓
+                - Scientific Section
 
-    - Digits Section(Functionality for the 0-9 digits and their GUI)
+            - Digits Section(Functionality for the 0-9 digits and their GUI)
+            - Input section
 

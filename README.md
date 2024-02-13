@@ -2,7 +2,7 @@
 
 This project is a simple calculator application implemented in Java. It provides basic arithmetic operations as well as scientific functionalities.
 
-Visit this [documentation]() to know of the project structure
+Visit this [documentation](https://github.com/AzharAhmed-bot/OOP-Group-Project/blob/main/Calculator/src/structure.md) to know of the project structure
 
 ## How to Run
 
@@ -32,9 +32,10 @@ The calculator application allows users to perform the following actions:
 
 ## Contributing
 The following have contributed to this project:
-    1. Louis 
-    2. Samuel
-    3. Hassan
+
+1. Louis 
+2. Samuel
+3. Hassan
 
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests via GitHub.
 

@@ -2,15 +2,19 @@
 
 1. Calculator
             ↓
-        - Abstract class
+
+    - Abstract class
                     ↓
-                - Calculator frame
-                - Calculator Input
-        - Arithmetic Interface
+         - Calculator frame
+         - Calculator Input
+
+    - Arithmetic Interface
                     ↓
-                - Arithmetic Section
-        - Scientific Interface
+        - Arithmetic Section
+
+    - Scientific Interface
                     ↓
-                - Scientific Section
-        - Digits Section
+        - Scientific Section
+
+    - Digits Section(Functionality for the 0-9 digits and their GUI)
 

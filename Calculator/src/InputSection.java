@@ -1,18 +1,17 @@
+import javax.swing.*;
+
 // InputSection class representing the input section
-public class InputSection extends Abstract {
+public class InputSection extends JPanel {
+
+    JTextField inputField;
+
     // Constructor
-    public InputSection(String name, int width, int height) {
-        super(name, width, height);
-    }
+    public InputSection(int width, int height) {
+        setLayout(null); 
 
-    // Implement abstract methods
-    @Override
-    public void render() {
-        // Render input section
-    }
+        inputField = new JTextField();
+        inputField.setBounds(50, 25, width, height);
 
-    @Override
-    public void onClick() {
-        // Handle click event
+        add(inputField); // Add the JTextField to the InputSection panel
     }
 }

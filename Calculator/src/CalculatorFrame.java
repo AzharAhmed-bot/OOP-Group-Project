@@ -11,6 +11,11 @@ public class CalculatorFrame extends Abstract {
       Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       Frame.setSize(this.width,this.height);
       Frame.setLayout(null);
+      
+    //   InputSection inputSection=new InputSection(300, 50);
+      
+    //   Frame.add(inputSection);
+
       Frame.setVisible(true);
     }
     

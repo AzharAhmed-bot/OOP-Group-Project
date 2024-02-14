@@ -1,24 +1,35 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-public class CalculatorFrame extends Abstract {
+import java.awt.*;
 
-    JFrame Frame;
+public class CalculatorFrame extends Abstract {
+    InputSection inputSection;
+    JFrame frame;
+
     public CalculatorFrame(String name, int width, int height) {
         super(name, width, height);
+        //Frame section
+        frame = new JFrame(this.name);
+        frame.setLayout(null); // Use null layout to manually set component positions
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(this.width, this.height);
 
-      Frame=new JFrame(this.name);
-      Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      Frame.setSize(this.width,this.height);
-      Frame.setLayout(null);
-      
-    //   InputSection inputSection=new InputSection(300, 50);
-      
-    //   Frame.add(inputSection);
+        // Create input section
+        inputSection = new InputSection();
+        inputSection.setBounds(50,0,1200, 50); // Example bounds for input section
+       
 
-      Frame.setVisible(true);
+        frame.add(inputSection);
+
+        //Digits section
+
+
+
+
+
+        //Signs section
+
+        frame.setVisible(true);
     }
-    
 
     // Implement abstract methods
     @Override

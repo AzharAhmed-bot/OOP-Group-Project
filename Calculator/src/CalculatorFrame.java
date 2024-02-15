@@ -25,7 +25,7 @@ public class CalculatorFrame extends Abstract {
 
         // Scientific section
         scientificSection= new ScientificSection();
-        scientificSection.setBounds(50, 100, 300, 300);
+        scientificSection.setBounds(50, 100, 800, 600);
         frame.add(scientificSection);
     
        

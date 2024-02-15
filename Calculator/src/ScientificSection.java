@@ -24,7 +24,7 @@ public class ScientificSection extends JPanel implements ActionListener {
         // }
 
         panel=new JPanel();
-        // panel.setLayout(new GridLayout(4,4,10,10));
+        panel.setLayout(new GridLayout(4,4,200,200));
         panel.setBackground(Color.GRAY);
 
         add(panel);

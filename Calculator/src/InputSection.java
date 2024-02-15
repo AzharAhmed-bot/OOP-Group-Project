@@ -1,17 +1,23 @@
 import javax.swing.*;
+import java.awt.*;
 
-// InputSection class representing the input section
 public class InputSection extends JPanel {
-
     JTextField inputField;
 
-    // Constructor
-    public InputSection(int width, int height) {
-        setLayout(null); 
+    public InputSection() {
+        setLayout(new BorderLayout());
 
+        // Create text field
         inputField = new JTextField();
-        inputField.setBounds(50, 25, width, height);
+        inputField.setEnabled(false);
+        
 
-        add(inputField); // Add the JTextField to the InputSection panel
+        // Set cursor alignment to right
+        inputField.setHorizontalAlignment(SwingConstants.RIGHT); 
+
+        inputField.setFont(new Font("Poppins", Font.PLAIN, 30));
+        
+    
+        add(inputField, BorderLayout.CENTER);
     }
 }

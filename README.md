@@ -12,13 +12,16 @@ To run the calculator application, follow these steps:
 2. Clone this repository to your local machine or download the project files.
 3. Navigate to the project directory in your terminal or command prompt.
 4. Compile the Java files using the following command:
+    ```
+    cd Calculator/src/
+    ```
 
     ```
-    javac Calculator/src/Main.java
+    javac Main.java
     ```
 5. Run the compiled Java program using the following command:
     ```
-    java Calculator/src/Main
+    java Main
     ```
 
 ## What the Project Does

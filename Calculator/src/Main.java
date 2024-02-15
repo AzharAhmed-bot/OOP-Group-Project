@@ -1,6 +1,7 @@
 public class Main {
+    static CalculatorFrame frame;
     public static void main(String[] args) {
-        CalculatorFrame frame=new CalculatorFrame("Calculator",1400,800);
+        frame=new CalculatorFrame("Calculator",1200,800);
         
         
 

@@ -19,6 +19,7 @@ public class CalculatorFrame extends Abstract {
 
         // Create input section
         inputSection = new InputSection();
+        
         inputSection.setBounds(50,0,1200, 50); 
         frame.add(inputSection);
 

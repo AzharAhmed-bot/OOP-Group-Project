@@ -9,7 +9,7 @@ public class InputSection extends JPanel {
 
         // Create text field
         inputField = new JTextField();
-        inputField.setEnabled(false);
+        // inputField.setEnabled(false);
         
 
         // Set cursor alignment to right

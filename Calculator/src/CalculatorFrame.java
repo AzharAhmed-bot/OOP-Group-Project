@@ -4,42 +4,44 @@ import java.awt.*;
 public class CalculatorFrame extends Abstract {
     InputSection inputSection;
     ScientificSection scientificSection;
+    DigitsSection digitsSection;
 
     JFrame frame;
 
     public CalculatorFrame(String name, int width, int height) {
         super(name, width, height);
-        //Frame section
+        // Frame section
         frame = new JFrame(this.name);
-        // To manually set components position
-        frame.setLayout(null); 
-        //To close the program when cross is clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(this.width, this.height);
 
         // Create input section
         inputSection = new InputSection();
-        
-        inputSection.setBounds(50,0,1200, 50); 
-        frame.add(inputSection);
+        // Create scientific section
+        scientificSection = new ScientificSection();
 
-        // Scientific section
-        scientificSection= new ScientificSection();
-        scientificSection.setBounds(50, 100, 800, 600);
-        frame.add(scientificSection);
-    
-       
+        // Create buttons panel
+        digitsSection=new DigitsSection();
 
-       
+        // Set layout to BorderLayout
+        frame.setLayout(new BorderLayout());
+        // Add input section to the top
+        frame.add(inputSection, BorderLayout.NORTH);
+        // Add scientific section to the WEST
+        frame.add(scientificSection, BorderLayout.WEST);
+        // Add buttons panel to the CENTER
+        // frame.add(buttonsPanel, BorderLayout.CENTER);
 
-        //Digits section
+        // Set preferred size for scientific section
+        scientificSection.setPreferredSize(new Dimension(width / 2, height));
 
+        // Set preferred size for buttons panel
+        // digitsSection.setPreferredSize(new Dimension(width / 2, height));
 
-
-
-
-        //Signs section
-
+        // Pack the frame to adjust sizes of components
+        frame.pack();
+        // Center the frame on the screen
+        frame.setLocationRelativeTo(null);
+        // Make the frame visible
         frame.setVisible(true);
     }
 
@@ -53,4 +55,5 @@ public class CalculatorFrame extends Abstract {
     public void onClick() {
         // Handle click event
     }
+
 }

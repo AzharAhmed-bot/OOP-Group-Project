@@ -12,12 +12,18 @@ public class ScientificSection extends JPanel {
     };
 
     public ScientificSection() {
+       
         setLayout(new GridLayout(5, 6, 5, 5)); // Set grid layout
 
         for (JButton button : scientificButtons) {
+            button.setBackground(Color.GRAY);
+            button.setForeground(Color.WHITE);
             button.setFont(new Font("Poppins", Font.PLAIN, 16)); // Adjust font size
             button.setFocusable(false);
+            
+    
             add(button); // Add buttons to the panel
+            
         }
     }
 }

@@ -29,13 +29,13 @@ public class CalculatorFrame extends Abstract {
         // Add scientific section to the WEST
         frame.add(scientificSection, BorderLayout.WEST);
         // Add buttons panel to the CENTER
-        // frame.add(buttonsPanel, BorderLayout.CENTER);
+        frame.add(digitsSection, BorderLayout.CENTER);
 
         // Set preferred size for scientific section
         scientificSection.setPreferredSize(new Dimension(width / 2, height));
 
         // Set preferred size for buttons panel
-        // digitsSection.setPreferredSize(new Dimension(width / 2, height));
+        digitsSection.setPreferredSize(new Dimension(width / 2, height));
 
         // Pack the frame to adjust sizes of components
         frame.pack();
@@ -55,5 +55,4 @@ public class CalculatorFrame extends Abstract {
     public void onClick() {
         // Handle click event
     }
-
 }

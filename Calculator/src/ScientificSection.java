@@ -1,23 +1,24 @@
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class ScientificSection extends JPanel {
-    JButton[] scientificButtons = new JButton[]{
-        new JButton("("), new JButton(")"), new JButton("mc"), new JButton("m+"), new JButton("m-"),
-        new JButton("mr"), new JButton("2nd"), new JButton("x²"), new JButton("x³"), new JButton("X^y"),
-        new JButton("e^x"), new JButton("10^x"), new JButton("1/x"), new JButton("√"), new JButton("3√"),
-        new JButton("LN(x)"), new JButton("log"), new JButton("x!"), new JButton("sin"), new JButton("cos"),
-        new JButton("tan"), new JButton("e"), new JButton("EE"), new JButton("Rad"), new JButton("sinh"),
-        new JButton("cosh"), new JButton("tanh"), new JButton("\u03C0"), new JButton("rand")
-    };
 
     public ScientificSection() {
-        setLayout(new GridLayout(5, 6, 5, 5)); // Set grid layout
+        setLayout(new GridLayout(5, 5, 5, 5));
 
-        for (JButton button : scientificButtons) {
-            button.setFont(new Font("Poppins", Font.PLAIN, 16)); // Adjust font size
-            button.setFocusable(false);
-            add(button); // Add buttons to the panel
+        String[] scientificButtonLabels = {"(", ")", "mc", "m+", "m-",
+                                            "mr", "2nd", "x²", "x³", "X^y",
+                                            "e^x", "10^x", "1/x", "√", "3√","x√y",
+                                            "LN(x)", "log", "x!", "sin", "cos",
+                                            "tan", "e", "EE", "Rad", "sinh",
+                                            "cosh", "tanh", "π", "rand"};
+
+        for (String label : scientificButtonLabels) {
+            JButton button = new JButton(label);
+            button.addActionListener(e -> {
+                // Handle scientific button actions here
+            });
+            add(button);
         }
     }
 }

@@ -16,7 +16,7 @@ public class ScientificFunction extends ScientificAbstract {
 
     @Override
     double customPower(double base, double exponent) {
-    return Math.pow(base, exponent);
+        return Math.pow(base, exponent);
     }
 
     @Override
@@ -26,12 +26,11 @@ public class ScientificFunction extends ScientificAbstract {
 
     @Override
     double fraction() {
-       
-        return 1/num; 
+        return 1 / num;
     }
 
     @Override
-    double exponential(){
+    double exponential() {
         return 2.718281828459045;
     }
 
@@ -47,7 +46,7 @@ public class ScientificFunction extends ScientificAbstract {
 
     @Override
     double customRoot(double base, double exponent) {
-    return Math.pow(base, 1.0 / exponent);
+        return Math.pow(base, 1.0 / exponent);
     }
 
     @Override
@@ -62,42 +61,62 @@ public class ScientificFunction extends ScientificAbstract {
 
     @Override
     double factorial() {
-    if (num < 0) {
-        throw new IllegalArgumentException("Factorial is not defined for negative numbers");
+        if (num < 0) {
+            throw new IllegalArgumentException("Factorial is not defined for negative numbers");
+        }
+        double result = 1;
+        for (int i = 2; i <= num; i++) {
+            result *= i;
+        }
+        return result;
     }
-    double result = 1;
-    for (int i = 2; i <= num; i++) {
-        result *= i;
-    }
-    return result;
-    }
-
 
     @Override
     double sin() {
-        return Math.sin(num);
+        double resultInRadians = degreeToRadian(num);
+        return Math.sin(resultInRadians);
     }
 
     @Override
     double cos() {
-        return Math.cos(num);
+        
+        double resultInRadians = degreeToRadian(num);
+        return Math.cos(resultInRadians);
     }
 
     @Override
     double tan() {
-        return Math.tan(num);
+        double resultInRadians = degreeToRadian(num);
+        return Math.tan(resultInRadians);
+    }
+
+    @Override
+    double sinH() {
+        double resultInDegrees = Math.toDegrees(Math.sinh(num));
+        return resultInDegrees;
+    }
+
+    @Override
+    double cosH() {
+        double resultInDegrees = Math.toDegrees(Math.cosh(num));
+        return resultInDegrees;
+    }
+
+    @Override
+    double tanH() {
+        double resultInDegrees = Math.toDegrees(Math.tanh(num));
+        return resultInDegrees;
     }
 
     @Override
     double singleE() {
-      
-        return 2.718281828459045; // Placeholder, implement your logic here
+        return 2.718281828459045; 
     }
 
     @Override
     double doubleE() {
-        // Implementation of doubleE method
-        return 0; // Placeholder, implement your logic here
+       
+        return 0; 
     }
 
     @Override
@@ -106,29 +125,13 @@ public class ScientificFunction extends ScientificAbstract {
     }
 
     @Override
-    double sinH() {
-        return Math.sinh(num);
-    }
-
-    @Override
-    double cosH() {
-        return Math.cosh(num);
-    }
-
-    @Override
-    double tanH() {
-        return Math.tanh(num);
-    }
-
-    @Override
     double rand() {
-        // Implementation of rand method
-        return 0; // Placeholder, implement your logic here
+     
+        return 0; 
     }
-   
 
-
-  
+    public double degreeToRadian(double num) {
+        double result = (num * Math.PI) / 180;
+        return result;
+    }
 }
-
-

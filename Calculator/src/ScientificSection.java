@@ -39,12 +39,15 @@ public class ScientificSection extends JPanel {
                     case "1/x":
                         applyUnaryFunction("fraction");
                     case "e":
-                        applyUnaryFunction("exponential");
+                        double result=2.718281828459045;
+                        inputSection.updateInputField(String.valueOf(result));
+                        break;
                     case "LN(x)":
-                        applyUnaryFunction("ln");
+                        inputSection.updateInputField("ln");
+    
                         break;
                     case "log":
-                        applyUnaryFunction("log");
+                        inputSection.updateInputField(buttonText);
                         break;
                     case "x!":
                         applyUnaryFunction("factorial");
@@ -59,16 +62,25 @@ public class ScientificSection extends JPanel {
                         inputSection.updateInputField(buttonText);
                         break;
                     case "tanh":
-                        inputSection.updateInputField(buttonText);
+                        inputSection.updateInputField("tah");
                         break;
                     case "sinh":
-                        inputSection.updateInputField(buttonText);
+                        inputSection.updateInputField("sih");
                         break;
                     case "cosh":
-                        inputSection.updateInputField(buttonText);
+                        inputSection.updateInputField("coh");
                         break;
-                    
+                    case "π":
+                        double result2=Math.PI;
+                        inputSection.setInputField(String.valueOf(result2));
+                        break;
+                    case "x√y":
+                        inputSection.updateInputField("√");
+                    case "X^y":
+                        inputSection.updateInputField("^");
                     // Add cases for other scientific functions here
+
+
                     default:
                         break;
                 }
@@ -101,6 +113,8 @@ public class ScientificSection extends JPanel {
             case "factorial":
                 result = scientificFunction.factorial();
                 break;
+            case "pi":
+                result=Math.PI;
             default:
                 break;
         }

@@ -11,7 +11,7 @@ public class InputSection extends JPanel {
         inputField = new JTextField();
         inputField.setEditable(false);
         inputField.setHorizontalAlignment(SwingConstants.RIGHT);
-        inputField.setFont(new Font("Arial", Font.PLAIN, 24));
+        inputField.setFont(new Font("Arial", Font.PLAIN, 50));
         inputField.setBackground(Color.decode("#32322F"));
         inputField.setForeground(Color.decode("#FFFFFF"));
         add(inputField, BorderLayout.CENTER);

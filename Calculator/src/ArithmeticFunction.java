@@ -27,24 +27,37 @@ public class ArithmeticFunction implements ArithmeticInterface {
 
     @Override
     public double divide(double num1, double num2) {
-        if (num2 == 0) {
-            inputField.setInputField("Cannot divide by zero");
-        }
-        return num1 / num2;
+    if (num2 == 0) {
+        throw new ArithmeticException("Cannot divide by zero");
+    }
+    return num1 / num2;
     }
 
+
     public double performOperation() {
+        double result = 0; // initialize result variable
         switch (sign) {
             case "+":
-                return add(num1, num2);
+                result = add(num1, num2);
+                break;
             case "-":
-                return subtract(num1, num2);
+                result = subtract(num1, num2);
+                break;
             case "*":
-                return multiply(num1, num2);
+                result = multiply(num1, num2);
+                break;
             case "/":
-                return divide(num1, num2);
+                try {
+                    result = divide(num1, num2);
+                } catch (ArithmeticException e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+                break;
             default:
                 throw new IllegalArgumentException("Invalid operation sign: " + sign);
         }
+        System.out.println("Performing operation: " + num1 + " " + sign + " " + num2 + " = " + result);
+        return result;
     }
+    
 }

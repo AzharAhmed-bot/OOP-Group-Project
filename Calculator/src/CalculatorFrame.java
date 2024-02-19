@@ -11,7 +11,7 @@ public class CalculatorFrame extends JFrame {
 
         // Create the sections
         InputSection inputSection = new InputSection();
-        ScientificSection scientificSection = new ScientificSection();
+        ScientificSection scientificSection = new ScientificSection(inputSection);
         DigitsSection digitsSection = new DigitsSection(inputSection);
 
         // Set the preferred size of the InputSection

@@ -1,12 +1,10 @@
 public interface ArithmeticInterface {
 
     //This is the default implementation of Arithmetic Operations
-    int add(int a, int b);
-    int subtract(int a, int b);
-    int multiply(int a, int b);
-    int divide(int a, int b);
+    double add(double a, double b);
+    double subtract(double a, double b);
+    double multiply(double a, double b);
+    double divide(double a, double b);
     
 
-
-   
 }

@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScientificSection extends JPanel {
+    Font myFont=new Font("Arial",Font.PLAIN,30);
 
     public ScientificSection() {
         setLayout(new GridLayout(5, 5, 5, 5));
@@ -15,6 +16,7 @@ public class ScientificSection extends JPanel {
 
         for (String label : scientificButtonLabels) {
             JButton button = new JButton(label);
+            button.setFont(myFont);
             button.setBackground(Color.decode("#454442"));
             button.setForeground(Color.decode("#FFFFFF"));
             button.addActionListener(e -> {

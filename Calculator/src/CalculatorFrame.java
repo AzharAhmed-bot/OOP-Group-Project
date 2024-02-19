@@ -15,7 +15,7 @@ public class CalculatorFrame extends JFrame {
         DigitsSection digitsSection = new DigitsSection(inputSection);
 
         // Set the preferred size of the InputSection
-        inputSection.setPreferredSize(new Dimension(width, height / 9));
+        inputSection.setPreferredSize(new Dimension(width, height / 5));
 
         // Create a main panel to hold all sections
         JPanel mainPanel = new JPanel(new BorderLayout());

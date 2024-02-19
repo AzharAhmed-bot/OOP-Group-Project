@@ -13,6 +13,7 @@ public abstract class ScientificAbstract{
     abstract double tenthPower();
     abstract double fraction();
     abstract double exponential();
+    abstract double exponentialPower();
     abstract double sqroot();
     abstract double cubeRoot();
     abstract double customRoot(double num1, double num2);

@@ -1,58 +1,39 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
-public class CalculatorFrame extends Abstract {
-    InputSection inputSection;
-    ScientificSection scientificSection;
-    DigitsSection digitsSection;
-
-    JFrame frame;
+public class CalculatorFrame extends JFrame {
 
     public CalculatorFrame(String name, int width, int height) {
-        super(name, width, height);
-        // Frame section
-        frame = new JFrame(this.name);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super(name);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(width, height);
+        setLocationRelativeTo(null);
 
-        // Create input section
-        inputSection = new InputSection();
-        // Create scientific section
-        scientificSection = new ScientificSection();
+        // Create the sections
+        InputSection inputSection = new InputSection();
+        ScientificSection scientificSection = new ScientificSection();
+        DigitsSection digitsSection = new DigitsSection(inputSection);
 
-        // Create buttons panel
-        digitsSection=new DigitsSection();
+        // Set the preferred size of the InputSection
+        inputSection.setPreferredSize(new Dimension(width, height / 10));
 
-        // Set layout to BorderLayout
-        frame.setLayout(new BorderLayout());
-        // Add input section to the top
-        frame.add(inputSection, BorderLayout.NORTH);
-        // Add scientific section to the WEST
-        frame.add(scientificSection, BorderLayout.WEST);
-        // Add buttons panel to the CENTER
-        frame.add(digitsSection, BorderLayout.CENTER);
+        // Create a main panel to hold all sections
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
-        // Set preferred size for scientific section
-        scientificSection.setPreferredSize(new Dimension(width / 2, height));
+        // Add inputSection to the main panel at the top
+        mainPanel.add(inputSection, BorderLayout.NORTH);
 
-        // Set preferred size for buttons panel
-        digitsSection.setPreferredSize(new Dimension(width / 2, height));
+        // Create a panel to hold the scientific and digits sections side by side
+        JPanel sectionsPanel = new JPanel(new GridLayout(1, 2));
+        sectionsPanel.add(scientificSection);
+        sectionsPanel.add(digitsSection);
 
-        // Pack the frame to adjust sizes of components
-        frame.pack();
-        // Center the frame on the screen
-        frame.setLocationRelativeTo(null);
-        // Make the frame visible
-        frame.setVisible(true);
+        // Add the sectionsPanel to the main panel at the center
+        mainPanel.add(sectionsPanel, BorderLayout.CENTER);
+
+        // Set the content pane of the frame
+        setContentPane(mainPanel);
     }
 
-    // Implement abstract methods
-    @Override
-    public void render() {
-        // Render frame
-    }
 
-    @Override
-    public void onClick() {
-        // Handle click event
-    }
 }

@@ -15,6 +15,18 @@ public class DigitsSection extends JPanel {
 
         for (String label : buttonLabels) {
             JButton button = new JButton(label);
+            button.setForeground(Color.decode("#FFFFFF"));
+            if(button.getText().equals("C") && button.getText().equals("+/-") && button.getText().equals("%")){
+                button.setBackground(Color.decode("#454442"));
+            }
+            else if(button.getText().equals("/") && button.getText().equals("*") && button.getText().equals("-") && button.getText().equals("+") && button.getText().equals("=") ){
+                button.setBackground(Color.decode("##FF9F09"));
+            }
+            else{
+                button.setBackground(Color.decode("#636361"));
+            }
+
+
             button.addActionListener(e -> {
                 String buttonText = button.getText();
                 if(buttonText.equals("C")){

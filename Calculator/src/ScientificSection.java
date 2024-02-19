@@ -15,6 +15,8 @@ public class ScientificSection extends JPanel {
 
         for (String label : scientificButtonLabels) {
             JButton button = new JButton(label);
+            button.setBackground(Color.decode("#454442"));
+            button.setForeground(Color.decode("#FFFFFF"));
             button.addActionListener(e -> {
                 // Handle scientific button actions here
             });

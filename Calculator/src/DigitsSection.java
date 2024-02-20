@@ -1,28 +1,35 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 import java.util.regex.Pattern;
 
-public class DigitsSection extends JPanel {
+class DigitsSection extends JPanel {
+    // Font for the buttons
     Font myFont = new Font("Arial", Font.PLAIN, 30);
+    // References to other sections
     ArithmeticFunction arithmeticFunction;
     ScientificFunction scientificFunction;
     InputSection inputSection;
 
+    // Constructor
     public DigitsSection(InputSection inputSection) {
         this.inputSection = inputSection;
 
+        // Setting grid layout for the panel
         setLayout(new GridLayout(5, 4, 5, 5));
 
+        // Button labels
         String[] buttonLabels = {"C", "+/-", "%", "/",
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
                 "del", "0", ".", "="};
 
+        // Creating buttons and setting properties
         for (String label : buttonLabels) {
             JButton button = new JButton(label);
             button.setFont(myFont);
             button.setForeground(Color.decode("#FFFFFF"));
+            // Setting background colors based on button label
             if (label.equals("C") || label.equals("+/-") || label.equals("%")) {
                 button.setBackground(Color.decode("#454442"));
             } else if (label.equals("/") || label.equals("*") || label.equals("-") || label.equals("+") || label.equals("=")) {
@@ -31,39 +38,45 @@ public class DigitsSection extends JPanel {
                 button.setBackground(Color.decode("#636361"));
             }
 
+            // Adding action listener to the button
             button.addActionListener(e -> {
                 String buttonText = button.getText();
+                // Handling different button actions
                 if (buttonText.equals("C")) {
                     inputSection.deleteInputField();
                 } else if (buttonText.equals("del")) {
                     inputSection.removeCurrentText();
                 } else if (buttonText.equals("=")) {
-
+                    // Handling evaluation
                     String input = inputSection.getInputFieldText();
                     char sign = extractSign(input);
                     if (sign == ' ') {
                         applyScientificFunctions();
                     } else {
+                        // Splitting input based on operator
                         String[] operands = input.split(Pattern.quote(String.valueOf(sign)));
                         if (sign == '√') {
-
+                            // Square root operation
                             double num1 = Double.parseDouble(operands[0]);
                             double num2 = Double.parseDouble(operands[1]);
-                            double result = Math.pow(num1, 1 / num2);
+                            ScientificFunction scientificFunction=new ScientificFunction(num1, "^");
+                            double result = scientificFunction.customRoot(num2, num1);
                             inputSection.setInputField(String.valueOf(result));
                         } else if (sign == '^') { // Check for '^' sign
-
+                            // Exponential operation
                             double num1 = Double.parseDouble(operands[0]);
                             double num2 = Double.parseDouble(operands[1]);
-                            double result = Math.pow(num1, num2);
+                            ScientificFunction scientificFunction=new ScientificFunction(num1, "^");
+                            double result=scientificFunction.customPower(num1, num2);
                             inputSection.setInputField(String.valueOf(result));
-
                         } else if (sign == 'E') {
+                            // Handling scientific notation
                             double num1 = Double.parseDouble(operands[0]);
                             double num2 = Double.parseDouble(operands[1]);
                             double result = num1 * (Math.pow(10, num2));
                             inputSection.setInputField(String.valueOf(result));
                         } else {
+                            // Handling basic arithmetic operations
                             double num1 = Double.parseDouble(operands[0]);
                             double num2 = Double.parseDouble(operands[1]);
                             arithmeticFunction = new ArithmeticFunction(num1, String.valueOf(sign), num2);
@@ -72,6 +85,7 @@ public class DigitsSection extends JPanel {
                         }
                     }
                 } else if (buttonText.equals("%")) {
+                    // Handling percentage calculation
                     String input = inputSection.getInputFieldText();
                     char sign = extractSign(input);
                     String[] operands = input.split("[" + sign + "]");
@@ -79,20 +93,24 @@ public class DigitsSection extends JPanel {
                     double result = num / 100.0;
                     inputSection.setInputField(String.valueOf(result));
                 } else if (buttonText.equals("+/-")) {
+                    // Toggling positive/negative sign
                     String input = inputSection.getInputFieldText();
                     double number = Double.parseDouble(input);
                     double result = number * -1;
                     inputSection.setInputField(String.valueOf(result));
                 } else {
+                    // Updating input field with button text
                     inputSection.updateInputField(buttonText);
                 }
             });
+            // Adding button to the panel
             add(button);
         }
     }
 
+    // Method to extract operator from input
     private char extractSign(String input) {
-        String newInput = removeBrackets(input); 
+        String newInput = removeBrackets(input);
         System.out.println(newInput);
         char sign = ' ';
         for (char c : newInput.toCharArray()) {
@@ -104,6 +122,7 @@ public class DigitsSection extends JPanel {
         return sign;
     }
 
+    // Method to remove unnecessary characters from input
     public String removeBrackets(String input) {
         StringBuilder result = new StringBuilder();
         for (char c : input.toCharArray()) {
@@ -115,10 +134,12 @@ public class DigitsSection extends JPanel {
         return result.toString();
     }
 
+    // Method to apply scientific functions
     private void applyScientificFunctions() {
         String inputText = inputSection.getInputFieldText();
         double result = 0;
 
+        // Parsing numeric part and applying corresponding scientific function
         if (inputText.startsWith("sin")) {
             String numericPart = inputText.substring(3);
             double num = Double.parseDouble(numericPart);
@@ -165,6 +186,7 @@ public class DigitsSection extends JPanel {
             result = Math.sqrt(num);
         }
 
+        // Updating input field with the result
         inputSection.setInputField(String.valueOf(result));
     }
 }

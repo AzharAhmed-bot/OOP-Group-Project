@@ -7,7 +7,7 @@ public class InputSection extends JPanel {
 
     public InputSection() {
         setLayout(new BorderLayout());
-
+        //Input field created
         inputField = new JTextField();
         inputField.setEditable(false);
         inputField.setHorizontalAlignment(SwingConstants.RIGHT);

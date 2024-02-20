@@ -6,6 +6,7 @@ public class ScientificSection extends JPanel {
     Font myFont = new Font("Arial", Font.PLAIN, 30);
     // Reference to InputSection
     InputSection inputSection;
+    private boolean showInverseFunctions = false;
 
     // Constructor
     public ScientificSection(InputSection inputSection) {
@@ -14,12 +15,18 @@ public class ScientificSection extends JPanel {
         setLayout(new GridLayout(5, 5, 5, 5));
 
         // Scientific buttons labels
-        String[] scientificButtonLabels = {"(", ")", "mc", "m+", "m-",
+        String[] scientificButtonLabels = {
+                "(", ")", "mc", "m+", "m-",
                 "mr", "2nd", "x²", "x³", "X^y",
                 "e^x", "10^x", "1/x", "√", "3√","x√y",
                 "LN(x)", "log", "x!", "sin", "cos",
                 "tan", "e", "EE", "Rad", "sinh",
                 "cosh", "tanh", "π", "rand"};
+
+
+        String[] renderNewButtons={
+            "arcSin","arcCos","arcTan",
+            "arcSiH","arcCoH","arcTaH"};
 
         // Adding buttons
         for (String label : scientificButtonLabels) {
@@ -46,6 +53,13 @@ public class ScientificSection extends JPanel {
                         break;
                     case "√":
                         applyUnaryFunction("sqroot");
+                        break;
+                    case "2nd":
+                        showInverseFunctions=!showInverseFunctions;
+                        for(int i=0 ; i<renderNewButtons.length; i++){
+                            JButton secondButton=(JButton) getComponent(scientificButtonLabels.length-1-i);
+                            secondButton.setText(showInverseFunctions ? renderNewButtons[i] : scientificButtonLabels[scientificButtonLabels.length - 1 - i]);
+                        }
                         break;
                     case "3√":
                         applyUnaryFunction("cubeRoot");
@@ -79,6 +93,15 @@ public class ScientificSection extends JPanel {
                         break;
                     case "cosh":
                         inputSection.updateInputField("coh");
+                        break;
+                    
+                    case "arcSin":
+                    case "arcCos":
+                    case "arcTan":
+                    case "arcSiH":
+                    case "arcCoH":
+                    case "arcTaH":
+                        inputSection.updateInputField(buttonText);
                         break;
                     case "π":
                         double result2 = Math.PI;
@@ -144,6 +167,7 @@ public class ScientificSection extends JPanel {
             case "exponentialPower":
                 result = scientificFunction.exponentialPower();
                 break;
+
             default:
                 break;
         }

@@ -23,6 +23,9 @@ public abstract class ScientificAbstract{
     abstract double sin();
     abstract double cos();
     abstract double tan();
+    abstract double arcSin();
+    abstract double arcCos();
+    abstract double arcTan();
     abstract double singleE();
     abstract double doubleE();
     abstract double rad();
@@ -30,6 +33,9 @@ public abstract class ScientificAbstract{
     abstract double cosH();
     abstract double tanH();
     abstract double rand();
+    abstract double arcSinH();
+    abstract double arcCosH();
+    abstract double arcTanH();
 
 
 }

@@ -145,16 +145,31 @@ class DigitsSection extends JPanel {
             double num = Double.parseDouble(numericPart);
             scientificFunction = new ScientificFunction(num, "sin");
             result = scientificFunction.sin();
-        } else if (inputText.startsWith("cos")) {
+        }else if(inputText.startsWith("arcSin")){
+            String numericPart = inputText.substring(6);
+            double num = Double.parseDouble(numericPart);
+            scientificFunction = new ScientificFunction(num, "arcSin");
+            result = scientificFunction.arcSin();
+        }   else if (inputText.startsWith("cos")) {
             String numericPart = inputText.substring(3);
             double num = Double.parseDouble(numericPart);
             scientificFunction = new ScientificFunction(num, "cos");
             result = scientificFunction.cos();
+        } else if(inputText.startsWith("arcCos")){
+            String numericPart = inputText.substring(6);
+            double num = Double.parseDouble(numericPart);
+            scientificFunction = new ScientificFunction(num, "sinh");
+            result = scientificFunction.arcCos();
         } else if (inputText.startsWith("tan")) {
             String numericPart = inputText.substring(3);
             double num = Double.parseDouble(numericPart);
             scientificFunction = new ScientificFunction(num, "tan");
             result = scientificFunction.tan();
+        } else if(inputText.startsWith("arcTan")){
+            String numericPart = inputText.substring(6);
+            double num = Double.parseDouble(numericPart);
+            scientificFunction = new ScientificFunction(num, "arcTan");
+            result = scientificFunction.arcTan();
         } else if (inputText.startsWith("log")) {
             String numericPart = inputText.substring(3);
             double num = Double.parseDouble(numericPart);
@@ -170,17 +185,34 @@ class DigitsSection extends JPanel {
             double num = Double.parseDouble(numericPart);
             scientificFunction = new ScientificFunction(num, "sinh");
             result = scientificFunction.sinH();
-        } else if (inputText.startsWith("coh")) {
+        } else if (inputText.startsWith("arcSiH")) {
+            String numericPart = inputText.substring(6);
+            double num = Double.parseDouble(numericPart);
+            scientificFunction = new ScientificFunction(num, "arcSinh");
+            result = scientificFunction.arcSinH();
+        }  else if (inputText.startsWith("coh")) {
             String numericPart = inputText.substring(3);
             double num = Double.parseDouble(numericPart);
             scientificFunction = new ScientificFunction(num, "cosh");
             result = scientificFunction.cosH();
-        } else if (inputText.startsWith("tah")) {
+        } else if (inputText.startsWith("arcCoH")) {
+            String numericPart = inputText.substring(6);
+            double num = Double.parseDouble(numericPart);
+            scientificFunction = new ScientificFunction(num, "arcCosh");
+            result = scientificFunction.arcCosH();
+        } 
+           else if (inputText.startsWith("tah")) {
             String numericPart = inputText.substring(3);
             double num = Double.parseDouble(numericPart);
             scientificFunction = new ScientificFunction(num, "tanh");
             result = scientificFunction.tanH();
-        } else if (inputText.startsWith("√")) {
+        } else if (inputText.startsWith("arcTaH")) {
+            String numericPart = inputText.substring(6);
+            double num = Double.parseDouble(numericPart);
+            scientificFunction = new ScientificFunction(num, "sinh");
+            result = scientificFunction.arcTanH();
+        } 
+         else if (inputText.startsWith("√")) {
             String numericPart = inputText.substring(1); // Extract numeric part after "√"
             double num = Double.parseDouble(numericPart);
             result = Math.sqrt(num);

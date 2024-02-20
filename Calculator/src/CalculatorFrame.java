@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class CalculatorFrame extends JFrame {
+    double memoryValue=0;
 
     public CalculatorFrame(String name, int width, int height) {
         super(name);
@@ -33,6 +34,16 @@ public class CalculatorFrame extends JFrame {
 
         // Set the content pane of the frame
         setContentPane(mainPanel);
+    }
+
+
+    public void resetMemory(){
+        this.memoryValue=0;
+    }
+
+    public void setMemoryValue(String value){
+        this.memoryValue=Integer.valueOf(value);
+        
     }
 
 

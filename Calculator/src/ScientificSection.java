@@ -2,13 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScientificSection extends JPanel {
+    // Font for buttons
     Font myFont = new Font("Arial", Font.PLAIN, 30);
+    // Reference to InputSection
     InputSection inputSection;
 
+    // Constructor
     public ScientificSection(InputSection inputSection) {
         this.inputSection = inputSection;
+        // Setting grid layout
         setLayout(new GridLayout(5, 5, 5, 5));
 
+        // Scientific buttons labels
         String[] scientificButtonLabels = {"(", ")", "mc", "m+", "m-",
                 "mr", "2nd", "x²", "x³", "X^y",
                 "e^x", "10^x", "1/x", "√", "3√","x√y",
@@ -16,6 +21,7 @@ public class ScientificSection extends JPanel {
                 "tan", "e", "EE", "Rad", "sinh",
                 "cosh", "tanh", "π", "rand"};
 
+        // Adding buttons
         for (String label : scientificButtonLabels) {
             JButton button = new JButton(label);
 
@@ -25,6 +31,7 @@ public class ScientificSection extends JPanel {
             button.addActionListener(e -> {
                 String buttonText = button.getText();
                 switch (buttonText) {
+                    // Handling button actions
                     case "(":
                         inputSection.updateInputField(buttonText);
                         break;
@@ -42,15 +49,16 @@ public class ScientificSection extends JPanel {
                         break;
                     case "3√":
                         applyUnaryFunction("cubeRoot");
+                        break;
                     case "1/x":
                         applyUnaryFunction("fraction");
+                        break;
                     case "e":
-                        double result=2.718281828459045;
+                        double result = 2.718281828459045;
                         inputSection.updateInputField(String.valueOf(result));
                         break;
                     case "LN(x)":
                         inputSection.updateInputField("ln");
-    
                         break;
                     case "log":
                         inputSection.updateInputField(buttonText);
@@ -59,11 +67,7 @@ public class ScientificSection extends JPanel {
                         applyUnaryFunction("factorial");
                         break;
                     case "sin":
-                        inputSection.updateInputField(buttonText);
-                        break;
                     case "cos":
-                        inputSection.updateInputField(buttonText);
-                        break;
                     case "tan":
                         inputSection.updateInputField(buttonText);
                         break;
@@ -77,7 +81,7 @@ public class ScientificSection extends JPanel {
                         inputSection.updateInputField("coh");
                         break;
                     case "π":
-                        double result2=Math.PI;
+                        double result2 = Math.PI;
                         inputSection.setInputField(String.valueOf(result2));
                         break;
                     case "x√y":
@@ -95,6 +99,7 @@ public class ScientificSection extends JPanel {
                         break;
                     case "EE":
                         inputSection.updateInputField("E");
+                        break;
                     default:
                         break;
                 }
@@ -103,6 +108,7 @@ public class ScientificSection extends JPanel {
         }
     }
 
+    // Method to apply unary functions
     private void applyUnaryFunction(String functionName) {
         double num = Double.parseDouble(inputSection.getInputFieldText());
         ScientificFunction scientificFunction = new ScientificFunction(num, functionName);
@@ -119,28 +125,28 @@ public class ScientificSection extends JPanel {
                 break;
             case "cubeRoot":
                 result = scientificFunction.cubeRoot();
+                break;
             case "fraction":
                 result = scientificFunction.fraction();
                 break;
             case "exponential":
-                result=scientificFunction.exponential();
+                result = scientificFunction.exponential();
+                break;
             case "factorial":
                 result = scientificFunction.factorial();
                 break;
             case "pi":
-                result=Math.PI;
+                result = Math.PI;
+                break;
             case "powerTen":
-                result=scientificFunction.tenthPower();
+                result = scientificFunction.tenthPower();
+                break;
             case "exponentialPower":
-                result=scientificFunction.exponentialPower();
+                result = scientificFunction.exponentialPower();
+                break;
             default:
                 break;
         }
         inputSection.setInputField(String.valueOf(result));
     }
-
-
-
-   
-     
 }

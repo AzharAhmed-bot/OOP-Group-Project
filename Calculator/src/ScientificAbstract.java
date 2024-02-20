@@ -6,7 +6,7 @@ public abstract class ScientificAbstract{
     this.num=num;
     this.sign=sign;
    }
-
+   //The abstract for scientific calculations
     abstract double square();
     abstract double cube();
     abstract double customPower(double num1, double num2);

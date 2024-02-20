@@ -25,6 +25,12 @@ public class ScientificSection extends JPanel {
             button.addActionListener(e -> {
                 String buttonText = button.getText();
                 switch (buttonText) {
+                    case "(":
+                        inputSection.updateInputField(buttonText);
+                        break;
+                    case ")":
+                        inputSection.updateInputField(buttonText);
+                        break;
                     case "x²":
                         applyUnaryFunction("square");
                         break;
@@ -76,11 +82,19 @@ public class ScientificSection extends JPanel {
                         break;
                     case "x√y":
                         inputSection.updateInputField("√");
+                        break;
                     case "X^y":
                         inputSection.updateInputField("^");
+                        break;
                     // Add cases for other scientific functions here
-
-
+                    case "10^x":
+                        applyUnaryFunction("powerTen");
+                        break;
+                    case "e^x":
+                        applyUnaryFunction("exponentialPower");
+                        break;
+                    case "EE":
+                        inputSection.updateInputField("E");
                     default:
                         break;
                 }
@@ -115,6 +129,10 @@ public class ScientificSection extends JPanel {
                 break;
             case "pi":
                 result=Math.PI;
+            case "powerTen":
+                result=scientificFunction.tenthPower();
+            case "exponentialPower":
+                result=scientificFunction.exponentialPower();
             default:
                 break;
         }

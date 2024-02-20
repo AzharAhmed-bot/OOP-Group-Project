@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.regex.Pattern;
 
 public class DigitsSection extends JPanel {
     Font myFont = new Font("Arial", Font.PLAIN, 30);
@@ -37,21 +38,30 @@ public class DigitsSection extends JPanel {
                 } else if (buttonText.equals("del")) {
                     inputSection.removeCurrentText();
                 } else if (buttonText.equals("=")) {
+
                     String input = inputSection.getInputFieldText();
                     char sign = extractSign(input);
                     if (sign == ' ') {
                         applyScientificFunctions();
                     } else {
-                        String[] operands = input.split("\\" + sign); // Escape the special character '^'
+                        String[] operands = input.split(Pattern.quote(String.valueOf(sign)));
                         if (sign == '√') {
+
                             double num1 = Double.parseDouble(operands[0]);
                             double num2 = Double.parseDouble(operands[1]);
-                            double result = Math.pow(num1, 1.0 / num2);
+                            double result = Math.pow(num1, 1 / num2);
                             inputSection.setInputField(String.valueOf(result));
                         } else if (sign == '^') { // Check for '^' sign
+
                             double num1 = Double.parseDouble(operands[0]);
                             double num2 = Double.parseDouble(operands[1]);
                             double result = Math.pow(num1, num2);
+                            inputSection.setInputField(String.valueOf(result));
+
+                        } else if (sign == 'E') {
+                            double num1 = Double.parseDouble(operands[0]);
+                            double num2 = Double.parseDouble(operands[1]);
+                            double result = num1 * (Math.pow(10, num2));
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             double num1 = Double.parseDouble(operands[0]);
@@ -82,14 +92,27 @@ public class DigitsSection extends JPanel {
     }
 
     private char extractSign(String input) {
+        String newInput = removeBrackets(input); 
+        System.out.println(newInput);
         char sign = ' ';
-        for (char c : input.toCharArray()) {
-            if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '√' || c == '^') {
+        for (char c : newInput.toCharArray()) {
+            if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '√' || c == '^' || c == 'E') {
                 sign = c;
                 break;
             }
         }
         return sign;
+    }
+
+    public String removeBrackets(String input) {
+        StringBuilder result = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            // Only append digits, decimal points, or valid mathematical symbols
+            if (Character.isDigit(c) || c == '.' || c == '-' || c == '+' || c == '*' || c == '/' || c == '%' || c == '√' || c == '^' || c == 'E') {
+                result.append(c);
+            }
+        }
+        return result.toString();
     }
 
     private void applyScientificFunctions() {

@@ -1,3 +1,5 @@
+
+
 public class ScientificFunction extends ScientificAbstract {
 
     public ScientificFunction(double num, String sign) {
@@ -33,6 +35,12 @@ public class ScientificFunction extends ScientificAbstract {
     double exponential() {
         return 2.718281828459045;
     }
+
+    @Override
+    double exponentialPower(){
+        return Math.pow( 2.718281828459045,num);
+    }
+
 
     @Override
     double sqroot() {

@@ -11,6 +11,11 @@ public class ScientificSection extends JPanel {
     // Constructor
     public ScientificSection(InputSection inputSection) {
         this.inputSection = inputSection;
+        if (inputSection == null) {
+            System.out.println("InputSection object is null!");
+        } else {
+            System.out.println("InputSection object is not null.");
+        }
         // Setting grid layout
         setLayout(new GridLayout(5, 5, 5, 5));
 
@@ -44,6 +49,18 @@ public class ScientificSection extends JPanel {
                         break;
                     case ")":
                         inputSection.updateInputField(buttonText);
+                        break;
+                    case "mc":
+                        applyUnaryFunction("mc");
+                        break;
+                    case "m+":
+                        applyUnaryFunction("m+");
+                        break;
+                    case "m-":
+                        applyUnaryFunction("m-");
+                        break;
+                    case "mr":
+                        applyUnaryFunction("mr");
                         break;
                     case "x²":
                         applyUnaryFunction("square");
@@ -133,10 +150,29 @@ public class ScientificSection extends JPanel {
 
     // Method to apply unary functions
     private void applyUnaryFunction(String functionName) {
+        String inputText = inputSection.getInputFieldText();
+        if (inputText.isEmpty() || !inputText.matches("[-+]?\\d*(\\.\\d+)?")) {
+            return;
+        }
         double num = Double.parseDouble(inputSection.getInputFieldText());
-        ScientificFunction scientificFunction = new ScientificFunction(num, functionName);
+        ScientificFunction scientificFunction = new ScientificFunction(num, functionName, inputSection);
         double result = 0;
         switch (functionName) {
+            case "mc":
+                result=scientificFunction.mc();
+                System.out.println(result);
+                break;
+            case "m+":
+                result=scientificFunction.mplus();
+                break;
+            case "m-":
+                result=scientificFunction.mminus();
+                break;
+            case "mr":
+                // result = scientificFunction.mr();
+                // System.out.print(result);
+                inputSection.updateInputField("Hello from mr");
+                break;
             case "square":
                 result = scientificFunction.square();
                 break;
@@ -167,7 +203,7 @@ public class ScientificSection extends JPanel {
             case "exponentialPower":
                 result = scientificFunction.exponentialPower();
                 break;
-
+    
             default:
                 break;
         }

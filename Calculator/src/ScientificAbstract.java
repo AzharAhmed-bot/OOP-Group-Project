@@ -36,6 +36,10 @@ public abstract class ScientificAbstract{
     abstract double arcSinH();
     abstract double arcCosH();
     abstract double arcTanH();
+    abstract double mc();
+    abstract double mplus();
+    abstract double mminus();
+    abstract double mr();
 
 
 }

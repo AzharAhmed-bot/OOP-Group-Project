@@ -1,10 +1,11 @@
 
 
 public class ScientificFunction extends ScientificAbstract {
-
+    InputSection inputSection;
     // Constructor
-    public ScientificFunction(double num, String sign) {
+    public ScientificFunction(double num, String sign, InputSection inputSection) {
         super(num, sign);
+        this.inputSection=inputSection;
     }
 
     // Method to calculate square of a number
@@ -186,6 +187,26 @@ public class ScientificFunction extends ScientificAbstract {
     @Override
     double rad() {
         return Math.toRadians(num);
+    }
+
+    @Override
+    double mc(){
+        return inputSection.resetMemory();
+    }
+
+    @Override
+    double mr(){
+        return inputSection.getMemoryValue();
+    }
+
+    @Override
+    double mplus(){
+        return inputSection.setMemoryValue(num);
+    }
+
+    @Override
+    double mminus(){ 
+        return inputSection.subtractFromMemory(num);
     }
 
     // Method to generate a random number

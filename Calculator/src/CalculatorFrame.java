@@ -2,13 +2,13 @@ import java.awt.*;
 import javax.swing.*;
 
 public class CalculatorFrame extends JFrame {
-    double memoryValue=0;
 
     public CalculatorFrame(String name, int width, int height) {
         super(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(width, height);
         setLocationRelativeTo(null);
+        
 
         // Create the sections
         InputSection inputSection = new InputSection();
@@ -37,14 +37,7 @@ public class CalculatorFrame extends JFrame {
     }
 
 
-    public void resetMemory(){
-        this.memoryValue=0;
-    }
-
-    public void setMemoryValue(String value){
-        this.memoryValue=Integer.valueOf(value);
-        
-    }
+   
 
 
 }

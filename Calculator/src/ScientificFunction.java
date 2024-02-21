@@ -1,8 +1,11 @@
-public class ScientificFunction extends ScientificAbstract {
 
+
+public class ScientificFunction extends ScientificAbstract {
+    InputSection inputSection;
     // Constructor
-    public ScientificFunction(double num, String sign) {
+    public ScientificFunction(double num, String sign, InputSection inputSection) {
         super(num, sign);
+        this.inputSection=inputSection;
     }
 
     // Method to calculate square of a number
@@ -111,6 +114,25 @@ public class ScientificFunction extends ScientificAbstract {
         return Math.tan(resultInRadians);
     }
 
+    @Override
+    double arcSin(){
+        double resultInRadians = degreeToRadian(num);
+        return Math.asin(resultInRadians);
+    }
+    @Override
+    double arcCos() {
+        
+        double resultInRadians=degreeToRadian(num);
+        return Math.acos(resultInRadians);
+    }
+    @Override
+    double arcTan() {
+        double resultInRadians=degreeToRadian(num);
+        return Math.atan(resultInRadians);
+    }
+
+
+
     // Method to calculate hyperbolic sine of an angle in degrees
     @Override
     double sinH() {
@@ -132,6 +154,23 @@ public class ScientificFunction extends ScientificAbstract {
         return resultInDegrees;
     }
 
+    @Override
+    double arcTanH() {
+        double resultInRadians=degreeToRadian(num);
+        return inverse(resultInRadians, "atanh");
+    }
+
+    @Override
+    double arcSinH() {
+        double resultInRadians=degreeToRadian(num);
+        return inverse(resultInRadians, "asinh");
+    }
+    @Override
+    double arcCosH() {
+        double resultInRadians=degreeToRadian(num);
+        return inverse(resultInRadians, "atanh ");
+    }
+
     // Method to return Euler's number (e)
     @Override
     double singleE() {
@@ -150,6 +189,26 @@ public class ScientificFunction extends ScientificAbstract {
         return Math.toRadians(num);
     }
 
+    @Override
+    double mc(){
+        return inputSection.resetMemory();
+    }
+
+    @Override
+    double mr(){
+        return inputSection.getMemoryValue();
+    }
+
+    @Override
+    double mplus(){
+        return inputSection.setMemoryValue(num);
+    }
+
+    @Override
+    double mminus(){ 
+        return inputSection.subtractFromMemory(num);
+    }
+
     // Method to generate a random number
     @Override
     double rand() {
@@ -161,4 +220,17 @@ public class ScientificFunction extends ScientificAbstract {
         double result = (num * Math.PI) / 180;
         return result;
     }
+
+    public double inverse(double num, String type) {
+        double result = 0;
+        if (type.equals("asinh")) {
+            result = Math.log(num + Math.sqrt((num * num) + 1));
+        } else if (type.equals("acosh")) {
+            result = Math.log(num + Math.sqrt((num * num) - 1));
+        } else if (type.equals("atanh")) {
+            result = 0.5 * Math.log((1 + num) / (1 - num));
+        }
+        return result;
+    }
+      
 }

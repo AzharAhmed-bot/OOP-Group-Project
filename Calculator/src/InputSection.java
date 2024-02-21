@@ -5,6 +5,8 @@ public class InputSection extends JPanel {
 
     private final JTextField inputField;
 
+    public double memoryValue=0;
+
     public InputSection() {
         setLayout(new BorderLayout());
         //Input field created
@@ -40,9 +42,34 @@ public class InputSection extends JPanel {
 
     public String getInputFieldText(){
         return inputField.getText();
+
     }
 
     public void setInputField(String text){
         inputField.setText(text);
+    }
+
+    public double resetMemory(){
+       memoryValue=0;
+       return memoryValue;
+    }
+
+    public double setMemoryValue(double num){
+    memoryValue = num;
+    setInputField(Double.toString(memoryValue)); // Update input field with new memory value
+    return memoryValue;        
+    }
+
+
+    public double getMemoryValue(){
+        setInputField(String.valueOf(memoryValue));
+        return memoryValue;
+    }
+
+    public double subtractFromMemory(double num) { 
+        double result = memoryValue - num;
+        memoryValue = result; 
+        setInputField(String.valueOf(memoryValue));
+        return result;
     }
 }

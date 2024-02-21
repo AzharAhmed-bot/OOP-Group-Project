@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
-import java.util.regex.Pattern;
+
+import java.util.Arrays;
+import java.util.regex.*;
 
 class DigitsSection extends JPanel {
     // Font for the buttons
@@ -77,11 +79,20 @@ class DigitsSection extends JPanel {
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             // Handling basic arithmetic operations
-                            double num1 = Double.parseDouble(operands[0]);
-                            double num2 = Double.parseDouble(operands[1]);
-                            arithmeticFunction = new ArithmeticFunction(num1, String.valueOf(sign), num2);
-                            double result = arithmeticFunction.performOperation();
-                            inputSection.setInputField(String.valueOf(result));
+                            double num1=Double.parseDouble(operands[0]);
+                            double num2=Double.parseDouble(operands[1]);
+
+                            
+                            // Now, perform arithmetic operation
+                            try{
+                                arithmeticFunction = new ArithmeticFunction(num1, String.valueOf(sign), num2);
+                                double result = arithmeticFunction.performOperation();
+                                inputSection.setInputField(String.valueOf(result));
+                            }catch(NumberFormatException error){
+                               throw new IllegalArgumentException("Operand is not a valid number: " + Arrays.toString(operands));
+                            }
+                           
+                            
                         }
                     }
                 } else if (buttonText.equals("%")) {
@@ -110,10 +121,10 @@ class DigitsSection extends JPanel {
 
     // Method to extract operator from input
     private char extractSign(String input) {
-        String newInput = removeBrackets(input);
-        System.out.println(newInput);
+
+        // System.out.println(newInput);
         char sign = ' ';
-        for (char c : newInput.toCharArray()) {
+        for (char c : input.toCharArray()) {
             if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '√' || c == '^' || c == 'E') {
                 sign = c;
                 break;
@@ -122,17 +133,7 @@ class DigitsSection extends JPanel {
         return sign;
     }
 
-    // Method to remove unnecessary characters from input
-    public String removeBrackets(String input) {
-        StringBuilder result = new StringBuilder();
-        for (char c : input.toCharArray()) {
-            // Only append digits, decimal points, or valid mathematical symbols
-            if (Character.isDigit(c) || c == '.' || c == '-' || c == '+' || c == '*' || c == '/' || c == '%' || c == '√' || c == '^' || c == 'E') {
-                result.append(c);
-            }
-        }
-        return result.toString();
-    }
+
 
     // Method to apply scientific functions
     private void applyScientificFunctions() {
@@ -221,4 +222,5 @@ class DigitsSection extends JPanel {
         // Updating input field with the result
         inputSection.setInputField(String.valueOf(result));
     }
+
 }

@@ -1,16 +1,14 @@
+import java.util.ArrayList;
+
 public class ArithmeticFunction implements ArithmeticInterface {
     // Instance variables to store the numbers and operation sign
-    private final double num1;
-    private final double num2;
-    private final String sign;
-    // Input section for potential error handling
-    InputSection inputField = new InputSection();
+    private final ArrayList<Double> operands;
+    private final ArrayList<String> operations;
 
     // Constructor to initialize the numbers and operation sign
-    public ArithmeticFunction(double num1, String sign, double num2) {
-        this.num1 = num1;
-        this.num2 = num2;
-        this.sign = sign;
+    public ArithmeticFunction(ArrayList<Double> operands, ArrayList<String> operations) {
+        this.operands = operands;
+        this.operations = operations;
     }
 
     // Method to perform addition
@@ -41,38 +39,44 @@ public class ArithmeticFunction implements ArithmeticInterface {
         return num1 / num2;
     }
 
-    // Method to perform the arithmetic operation based on the operation sign
+    // Method to perform the arithmetic operation based on the operations list
     public double performOperation() {
         // Initialize result variable
-        double result = 0; 
-        // Perform the operation based on the sign
-        switch (sign) {
-            case "+":
-                result = add(num1, num2);
-                break;
-            case "-":
-                result = subtract(num1, num2);
-                break;
-            case "*":
-                result = multiply(num1, num2);
-                break;
-            case "/":
-                // Handle division by zero exception
-                try {
-                    result = divide(num1, num2);
-                } catch (ArithmeticException e) {
-                    // Print error message
-                    System.out.println("Error: " + e.getMessage());
-                    inputField.updateInputField(e.getMessage());
-                }
-                break;
-            default:
-                // Throw exception for invalid operation sign
-                throw new IllegalArgumentException("Invalid operation sign: " + sign);
+        double result = operands.get(0);
 
+        // Iterate through operations and operands lists
+        for (int i = 0; i < operations.size(); i++) {
+            String operation = operations.get(i);
+            double operand = operands.get(i + 1);
+
+            // Perform the operation based on the sign
+            switch (operation) {
+                case "+":
+                    result = add(result, operand);
+                    break;
+                case "-":
+                    result = subtract(result, operand);
+                    break;
+                case "*":
+                    result = multiply(result, operand);
+                    break;
+                case "/":
+                    // Handle division by zero exception
+                    try {
+                        result = divide(result, operand);
+                    } catch (ArithmeticException e) {
+                        // Print error message
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                default:
+                    // Throw exception for invalid operation sign
+                    throw new IllegalArgumentException("Invalid operation sign: " + operation);
+            }
         }
+
         // Print the operation and its result
-        System.out.println("Performing operation: " + num1 + " " + sign + " " + num2 + " = " + result);
+        System.out.println("Performing operation: " + operands.toString() + " " + operations.toString() + " = " + result);
         return result;
-    }   
+    }
 }

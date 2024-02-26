@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 class DigitsSection extends JPanel {
@@ -9,6 +11,8 @@ class DigitsSection extends JPanel {
     ArithmeticFunction arithmeticFunction;
     ScientificFunction scientificFunction;
     InputSection inputSection;
+    ArrayList<Double> operands = new ArrayList<>();
+    ArrayList<String> operations = new ArrayList<>();
 
     // Constructor
     public DigitsSection(InputSection inputSection) {
@@ -77,11 +81,7 @@ class DigitsSection extends JPanel {
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             // Handling basic arithmetic operations
-                            double num1 = Double.parseDouble(operands[0]);
-                            double num2 = Double.parseDouble(operands[1]);
-                            arithmeticFunction = new ArithmeticFunction(num1, String.valueOf(sign), num2);
-                            double result = arithmeticFunction.performOperation();
-                            inputSection.setInputField(String.valueOf(result));
+                            
                         }
                     }
                 } else if (buttonText.equals("%")) {

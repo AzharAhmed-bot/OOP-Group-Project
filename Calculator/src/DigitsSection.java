@@ -2,7 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.regex.*;
+
+
+
 
 class DigitsSection extends JPanel {
     // Font for the buttons
@@ -13,6 +16,7 @@ class DigitsSection extends JPanel {
     InputSection inputSection;
     ArrayList<Double> operands = new ArrayList<>();
     ArrayList<String> operations = new ArrayList<>();
+
 
     // Constructor
     public DigitsSection(InputSection inputSection) {
@@ -81,14 +85,24 @@ class DigitsSection extends JPanel {
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             // Handling basic arithmetic operations
-                            String[] split = input.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
+                            String[] split = input.split("(?=[-+*/()])|(?<=[-+*/()])");
                             ArrayList<Double> operandsList = new ArrayList<>();
                             ArrayList<String> operationsList = new ArrayList<>();
 
-                            for (String token : split) {
+                            for (String token : split) {                 
                                 try {
-                                    double number = Double.parseDouble(token);
+                                    if (token.matches("sin\\d*|cos\\d*|tan\\d*|log\\d*|ln\\d*")) {
+                                    // Extract numeric part from the token
+                                    String functionName=token.substring(0,3).trim();
+                                    String numericPart = token.substring(3).trim(); 
+                                    double numericValue =Double.parseDouble(numericPart);
+                                    double number=performScientificAction(functionName,numericValue,inputSection);
                                     operandsList.add(number);
+                                }
+                            
+                                double number = Double.parseDouble(token);
+                                operandsList.add(number);
+                                    
                                 } catch (NumberFormatException error) {
                                     if (token.equals("+")) {
                                         operationsList.add(token);
@@ -250,4 +264,39 @@ class DigitsSection extends JPanel {
         // Updating input field with the result
         inputSection.setInputField(String.valueOf(result));
     }
+    private static double performScientificAction(String functionName, double numericValue, InputSection inputSection) {
+        double result = 0;
+        switch (functionName) {
+            case "sin":
+                // Perform sine operation
+                ScientificFunction sinFunction = new ScientificFunction(numericValue, "sin", inputSection);
+                result = sinFunction.sin();
+                break;
+            case "cos":
+                // Perform cosine operation
+                ScientificFunction cosFunction = new ScientificFunction(numericValue, "cos", inputSection);
+                result = cosFunction.cos();
+                break;
+            case "tan":
+                // Perform tangent operation
+                ScientificFunction tanFunction = new ScientificFunction(numericValue, "tan", inputSection);
+                result = tanFunction.tan();
+                break;
+            case "log":
+                // Perform logarithm operation
+                ScientificFunction logFunction = new ScientificFunction(numericValue, "log", inputSection);
+                result = logFunction.log();
+                break;
+            case "ln":
+                // Perform natural logarithm operation
+                ScientificFunction lnFunction = new ScientificFunction(numericValue, "ln", inputSection);
+                result = lnFunction.ln();
+                break;
+            default:
+                // Handle invalid function name
+                throw new IllegalArgumentException("Unsupported scientific function: " + functionName);
+        }
+        return result;
+    }
+    
 }

@@ -110,6 +110,9 @@ public class ScientificFunction extends ScientificAbstract {
     // Method to calculate tangent of an angle in degrees
     @Override
     double tan() {
+        if(num==90){
+            return Double.NaN;
+        }
         double resultInRadians = degreeToRadian(num);
         return Math.tan(resultInRadians);
     }

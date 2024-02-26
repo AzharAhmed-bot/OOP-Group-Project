@@ -102,6 +102,7 @@ class DigitsSection extends JPanel {
                                     else if (token.equals("*")) {
                                         operationsList.add(token);
                                     }
+                                 
                                     
                                 }
                             }

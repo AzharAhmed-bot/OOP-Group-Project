@@ -63,6 +63,7 @@ public class InputSection extends JPanel {
 
     public double getMemoryValue(){
         setInputField(String.valueOf(memoryValue));
+        System.out.println(memoryValue);
         return memoryValue;
     }
 

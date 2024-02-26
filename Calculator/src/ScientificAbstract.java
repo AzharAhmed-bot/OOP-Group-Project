@@ -39,7 +39,7 @@ public abstract class ScientificAbstract{
     abstract double mc();
     abstract double mplus();
     abstract double mminus();
-    abstract double mr();
+    abstract double mread();
 
 
 }

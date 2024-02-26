@@ -57,16 +57,16 @@ public String performOperation() {
 
             // Perform the operation based on the sign
             switch (operation) {
-                case "+":
+                case "/":
                     result = add(result, operand);
                     break;
-                case "-":
+                case "*":
                     result = subtract(result, operand);
                     break;
-                case "*":
+                case "+":
                     result = multiply(result, operand);
                     break;
-                case "/":
+                case "-":
                     // Handle division by zero exception
                     try {
                         result = divide(result, operand);

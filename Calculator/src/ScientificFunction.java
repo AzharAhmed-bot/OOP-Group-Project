@@ -198,7 +198,7 @@ public class ScientificFunction extends ScientificAbstract {
     }
 
     @Override
-    double mr(){
+    double mread(){
         return inputSection.getMemoryValue();
     }
 

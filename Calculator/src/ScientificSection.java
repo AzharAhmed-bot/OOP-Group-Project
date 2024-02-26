@@ -51,16 +51,18 @@ public class ScientificSection extends JPanel {
                         inputSection.updateInputField(buttonText);
                         break;
                     case "mc":
-                        applyUnaryFunction("mc");
+                        inputSection.resetMemory();
                         break;
                     case "m+":
-                        applyUnaryFunction("m+");
+                        applyUnaryFunction("mplus");
                         break;
                     case "m-":
-                        applyUnaryFunction("m-");
+                        double numberToRemove=Double.parseDouble(inputSection.getInputFieldText());
+                        inputSection.subtractFromMemory(numberToRemove);
                         break;
                     case "mr":
-                        applyUnaryFunction("mr");
+                       inputSection.getMemoryValue();
+         
                         break;
                     case "x²":
                         applyUnaryFunction("square");
@@ -162,16 +164,11 @@ public class ScientificSection extends JPanel {
                 result=scientificFunction.mc();
                 System.out.println(result);
                 break;
-            case "m+":
+            case "mplus":
                 result=scientificFunction.mplus();
                 break;
-            case "m-":
+            case "mminus":
                 result=scientificFunction.mminus();
-                break;
-            case "mr":
-                // result = scientificFunction.mr();
-                // System.out.print(result);
-                inputSection.updateInputField("mr");
                 break;
             case "square":
                 result = scientificFunction.square();
@@ -203,7 +200,10 @@ public class ScientificSection extends JPanel {
             case "exponentialPower":
                 result = scientificFunction.exponentialPower();
                 break;
-    
+            case "mread":
+                // result = scientificFunction.mread();
+                System.out.print("You clicked the mr button");
+                break;
             default:
                 break;
         }

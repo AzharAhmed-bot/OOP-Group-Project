@@ -81,35 +81,27 @@ class DigitsSection extends JPanel {
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             // Handling basic arithmetic operations
-                            String[] split = input.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
+                            String[] split = input.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)|(?<=sin|cos|tan|ln|log|√)");
                             ArrayList<Double> operandsList = new ArrayList<>();
                             ArrayList<String> operationsList = new ArrayList<>();
-
+                            
                             for (String token : split) {
                                 try {
                                     double number = Double.parseDouble(token);
                                     operandsList.add(number);
                                 } catch (NumberFormatException error) {
-                                    if (token.equals("+")) {
-                                        operationsList.add(token);
+                                    // Check if the token is a scientific function or an arithmetic operation
+                                    if (token.matches("sin|cos|tan|ln|log|√")) {
+                                        operationsList.add(token); // Add scientific function to operations list
+                                    } else if (token.equals("+") || token.equals("-") || token.equals("/") || token.equals("*")) {
+                                        operationsList.add(token); // Add arithmetic operation to operations list
                                     }
-                                    else if (token.equals("-")) {
-                                        operationsList.add(token);
-                                    }
-                                    else if (token.equals("/")) {
-                                        operationsList.add(token);
-                                    }
-                                    else if (token.equals("*")) {
-                                        operationsList.add(token);
-                                    }
-                                 
-                                    
                                 }
                             }
-
-                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList);
+                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList,inputSection);
                             double result = arithmeticFunction.performOperation();
                             inputSection.setInputField(String.valueOf(result));
+                            
                             
                         }
                     }

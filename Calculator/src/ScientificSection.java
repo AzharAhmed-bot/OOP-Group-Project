@@ -171,7 +171,7 @@ public class ScientificSection extends JPanel {
             case "mr":
                 // result = scientificFunction.mr();
                 // System.out.print(result);
-                inputSection.updateInputField("Hello from mr");
+                inputSection.updateInputField("mr");
                 break;
             case "square":
                 result = scientificFunction.square();

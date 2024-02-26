@@ -4,11 +4,13 @@ public class ArithmeticFunction implements ArithmeticInterface {
     // Instance variables to store the numbers and operation sign
     private final ArrayList<Double> operands;
     private final ArrayList<String> operations;
+    InputSection inputSection;
 
     // Constructor to initialize the numbers and operation sign
-    public ArithmeticFunction(ArrayList<Double> operands, ArrayList<String> operations) {
+    public ArithmeticFunction(ArrayList<Double> operands, ArrayList<String> operations,InputSection inputSection) {
         this.operands = operands;
         this.operations = operations;
+        this.inputSection=inputSection;
     }
 
     // Method to perform addition
@@ -40,19 +42,22 @@ public class ArithmeticFunction implements ArithmeticInterface {
     }
 
     // Method to perform the arithmetic operation based on the operations list
-    public double performOperation() {
-        // Initialize result variable
-        double result = operands.get(0);
+public double performOperation() {
+    // Initialize result variable
+    double result = operands.get(0);
 
-        // Initialize a StringBuilder to build the operation string
-        StringBuilder operationString = new StringBuilder();
+    // Initialize a StringBuilder to build the operation string
+    StringBuilder operationString = new StringBuilder();
 
-        // Append the first operand
-        operationString.append("[").append(operands.get(0)).append("]");
+    // Append the first operand
+    operationString.append("[").append(operands.get(0)).append("]");
 
-        // Iterate through operations and operands lists
-        for (int i = 0; i < operations.size(); i++) {
-            String operation = operations.get(i);
+    // Iterate through operations and operands lists
+    for (int i = 0; i < operations.size(); i++) {
+        String operation = operations.get(i);
+
+        // Ensure that there are enough operands in the list
+        if (i + 1 < operands.size()) {
             double operand = operands.get(i + 1);
 
             // Append the operator and operand to the operation string
@@ -82,10 +87,17 @@ public class ArithmeticFunction implements ArithmeticInterface {
                     // Throw exception for invalid operation sign
                     throw new IllegalArgumentException("Invalid operation sign: " + operation);
             }
+        } else {
+            // Handle the case where there are not enough operands
+            throw new IllegalArgumentException("Not enough operands for operation: " + operation);
         }
-
-        // Print the operation and its result
-        System.out.println("Performing operationing: " + operationString.toString() + " = " + result);
-        return result;
     }
+
+    // Print the operation and its result
+    System.out.println("Performing operation: " + operationString.toString() + " = " + result);
+
+    return result;
+}
+
+
 }

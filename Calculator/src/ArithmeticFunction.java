@@ -44,10 +44,19 @@ public class ArithmeticFunction implements ArithmeticInterface {
         // Initialize result variable
         double result = operands.get(0);
 
+        // Initialize a StringBuilder to build the operation string
+        StringBuilder operationString = new StringBuilder();
+
+        // Append the first operand
+        operationString.append("[").append(operands.get(0)).append("]");
+
         // Iterate through operations and operands lists
         for (int i = 0; i < operations.size(); i++) {
             String operation = operations.get(i);
             double operand = operands.get(i + 1);
+
+            // Append the operator and operand to the operation string
+            operationString.append(" ").append(operation).append(" [").append(operand).append("]");
 
             // Perform the operation based on the sign
             switch (operation) {
@@ -76,7 +85,7 @@ public class ArithmeticFunction implements ArithmeticInterface {
         }
 
         // Print the operation and its result
-        System.out.println("Performing operation: " + operands.toString() + " " + operations.toString() + " = " + result);
+        System.out.println("Performing operationing: " + operationString.toString() + " = " + result);
         return result;
     }
 }

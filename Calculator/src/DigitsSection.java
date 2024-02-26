@@ -81,32 +81,36 @@ class DigitsSection extends JPanel {
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             // Handling basic arithmetic operations
-                            String[] split = input.split("(?<=(?<=sin|cos|tan|ln|log|√)\\d)(?=\\D)|(?<=\\D)(?=\\d)|(?<=sin|cos|tan|ln|log|√)");
+                            String[] split = input.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
                             ArrayList<Double> operandsList = new ArrayList<>();
                             ArrayList<String> operationsList = new ArrayList<>();
-                            
+
                             for (String token : split) {
-                                // double test=Double.parseDouble(operands[0]);
-                                // System.out.print(test);
                                 try {
-                                   
-                                        double number = Double.parseDouble(token);
-                                        operandsList.add(number);
+                                    double number = Double.parseDouble(token);
+                                    operandsList.add(number);
+                                } catch (NumberFormatException error) {
+                                    if (token.equals("+")) {
+                                        operationsList.add(token);
                                     }
-                                    
-                                 catch (NumberFormatException error) {
-                                    
-                                    if (token.equals("+") || token.equals("-") || token.equals("/") || token.equals("*")) {
-                                        operationsList.add(token); // Add arithmetic operation to operations list
+                                    else if (token.equals("-")) {
+                                        operationsList.add(token);
                                     }
+                                    else if (token.equals("/")) {
+                                        operationsList.add(token);
+                                    }
+                                    else if (token.equals("*")) {
+                                        operationsList.add(token);
+                                    }
+                                 
+                                    
                                 }
                             }
 
-                            // Now you can continue with the normal arithmetic operation using operandsList and operationsList
-                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList, inputSection);
+                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList);
                             double result = arithmeticFunction.performOperation();
                             inputSection.setInputField(String.valueOf(result));
-
+                            
                         }
                     }
                 } else if (buttonText.equals("%")) {
@@ -246,39 +250,4 @@ class DigitsSection extends JPanel {
         // Updating input field with the result
         inputSection.setInputField(String.valueOf(result));
     }
-
-    // private double performScientificFunction(String functionName, double number) {
-    //     double result = 0;
-    //     ScientificFunction scientificFunction;
-    //     switch (functionName) {
-    //         case "sin":
-    //             scientificFunction = new ScientificFunction(number, "sin", inputSection);
-    //             result = scientificFunction.sin();
-    //             break;
-    //         case "cos":
-    //             scientificFunction = new ScientificFunction(number, "cos", inputSection);
-    //             result = scientificFunction.cos();
-    //             break;
-    //         case "tan":
-    //             scientificFunction = new ScientificFunction(number, "tan", inputSection);
-    //             result = scientificFunction.tan();
-    //             break;
-    //         case "ln":
-    //             scientificFunction = new ScientificFunction(number, "ln", inputSection);
-    //             result = scientificFunction.ln();
-    //             break;
-    //         case "log":
-    //             scientificFunction = new ScientificFunction(number, "log", inputSection);
-    //             result = scientificFunction.log();
-    //             break;
-    //         case "√":
-    //             result = Math.sqrt(number);
-    //             break;
-    //         default:
-    //             // Handle unsupported scientific functions
-    //             throw new IllegalArgumentException("Unsupported scientific function: " + functionName);
-    //     }
-    //     return result;
-    // }
-    
 }

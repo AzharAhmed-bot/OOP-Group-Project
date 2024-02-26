@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 class DigitsSection extends JPanel {
@@ -9,6 +11,8 @@ class DigitsSection extends JPanel {
     ArithmeticFunction arithmeticFunction;
     ScientificFunction scientificFunction;
     InputSection inputSection;
+    ArrayList<Double> operands = new ArrayList<>();
+    ArrayList<String> operations = new ArrayList<>();
 
     // Constructor
     public DigitsSection(InputSection inputSection) {
@@ -77,11 +81,35 @@ class DigitsSection extends JPanel {
                             inputSection.setInputField(String.valueOf(result));
                         } else {
                             // Handling basic arithmetic operations
-                            double num1 = Double.parseDouble(operands[0]);
-                            double num2 = Double.parseDouble(operands[1]);
-                            arithmeticFunction = new ArithmeticFunction(num1, String.valueOf(sign), num2);
+                            String[] split = input.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
+                            ArrayList<Double> operandsList = new ArrayList<>();
+                            ArrayList<String> operationsList = new ArrayList<>();
+
+                            for (String token : split) {
+                                try {
+                                    double number = Double.parseDouble(token);
+                                    operandsList.add(number);
+                                } catch (NumberFormatException error) {
+                                    if (token.equals("+")) {
+                                        operationsList.add(token);
+                                    }
+                                    else if (token.equals("-")) {
+                                        operationsList.add(token);
+                                    }
+                                    else if (token.equals("/")) {
+                                        operationsList.add(token);
+                                    }
+                                    else if (token.equals("*")) {
+                                        operationsList.add(token);
+                                    }
+                                    
+                                }
+                            }
+
+                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList);
                             double result = arithmeticFunction.performOperation();
                             inputSection.setInputField(String.valueOf(result));
+                            
                         }
                     }
                 } else if (buttonText.equals("%")) {

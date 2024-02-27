@@ -4,6 +4,7 @@ public class ArithmeticFunction implements ArithmeticInterface {
     // Instance variables to store the numbers and operation sign
     private final ArrayList<Double> operands;
     private final ArrayList<String> operations;
+    InputSection inputSection;
 
     // Constructor to initialize the numbers and operation sign
     public ArithmeticFunction(ArrayList<Double> operands, ArrayList<String> operations) {
@@ -34,6 +35,7 @@ public class ArithmeticFunction implements ArithmeticInterface {
     public double divide(double num1, double num2) {
         // Handling division by zero
         if (num2 == 0) {
+            inputSection.setInputField("NaN");
             throw new ArithmeticException("Cannot divide by zero");
         }
         return num1 / num2;

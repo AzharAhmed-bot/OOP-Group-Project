@@ -84,6 +84,7 @@ public class ScientificFunction extends ScientificAbstract {
     @Override
     double factorial() {
         if (num < 0) {
+            inputSection.setInputField("NaN");
             throw new IllegalArgumentException("Factorial is not defined for negative numbers");
         }
         double result = 1;

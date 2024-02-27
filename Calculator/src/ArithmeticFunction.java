@@ -42,15 +42,10 @@ public class ArithmeticFunction implements ArithmeticInterface {
     }
 
     // Method to perform the arithmetic operation based on the operations list
-public double performOperation() {
+   // Method to perform the arithmetic operation based on the operations list
+public String performOperation() {
     // Initialize result variable
     double result = operands.get(0);
-
-    // Initialize a StringBuilder to build the operation string
-    StringBuilder operationString = new StringBuilder();
-
-    // Append the first operand
-    operationString.append("[").append(operands.get(0)).append("]");
 
     // Iterate through operations and operands lists
     for (int i = 0; i < operations.size(); i++) {
@@ -60,21 +55,18 @@ public double performOperation() {
         if (i + 1 < operands.size()) {
             double operand = operands.get(i + 1);
 
-            // Append the operator and operand to the operation string
-            operationString.append(" ").append(operation).append(" [").append(operand).append("]");
-
             // Perform the operation based on the sign
             switch (operation) {
-                case "+":
+                case "/":
                     result = add(result, operand);
                     break;
-                case "-":
+                case "*":
                     result = subtract(result, operand);
                     break;
-                case "*":
+                case "+":
                     result = multiply(result, operand);
                     break;
-                case "/":
+                case "-":
                     // Handle division by zero exception
                     try {
                         result = divide(result, operand);
@@ -93,11 +85,16 @@ public double performOperation() {
         }
     }
 
-    // Print the operation and its result
-    System.out.println("Performing operation: " + operationString.toString() + " = " + result);
-
-    return result;
+    // Check if the result is a whole number
+    if (result % 1 == 0) {
+        // If it's a whole number, convert it to an integer
+        return String.valueOf((int) result);
+    } else {
+        // If it's not a whole number, convert it to a string
+        return String.valueOf(result);
+    }
 }
+
 
 
 }

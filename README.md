@@ -4,6 +4,10 @@ This project is a simple calculator application implemented in Java. It provides
 
 Visit this [documentation](https://github.com/AzharAhmed-bot/OOP-Group-Project/blob/main/Calculator/src/structure.md) to know of the project structure
 
+## Project Demo
+
+<img width="960" alt="Screenshot 2024-02-28 005703" src="https://github.com/AzharAhmed-bot/OOP-Group-Project/assets/126657393/6267091a-655d-44b5-a4a0-1764e58e3647">
+
 ## How to Run
 
 To run the calculator application, follow these steps:

@@ -121,7 +121,7 @@ class DigitsSection extends JPanel {
                                 }
                             }
 
-                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList,inputSection);
+                            ArithmeticFunction arithmeticFunction = new ArithmeticFunction(operandsList, operationsList);
                             String result = arithmeticFunction.performOperation();
                             inputSection.setInputField(result);
                             

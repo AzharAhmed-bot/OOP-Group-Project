@@ -4,13 +4,11 @@ public class ArithmeticFunction implements ArithmeticInterface {
     // Instance variables to store the numbers and operation sign
     private final ArrayList<Double> operands;
     private final ArrayList<String> operations;
-    InputSection inputSection;
 
     // Constructor to initialize the numbers and operation sign
-    public ArithmeticFunction(ArrayList<Double> operands, ArrayList<String> operations,InputSection inputSection) {
+    public ArithmeticFunction(ArrayList<Double> operands, ArrayList<String> operations) {
         this.operands = operands;
         this.operations = operations;
-        this.inputSection=inputSection;
     }
 
     // Method to perform addition
@@ -42,59 +40,45 @@ public class ArithmeticFunction implements ArithmeticInterface {
     }
 
     // Method to perform the arithmetic operation based on the operations list
-   // Method to perform the arithmetic operation based on the operations list
-public String performOperation() {
-    // Initialize result variable
-    double result = operands.get(0);
-
-    // Iterate through operations and operands lists
-    for (int i = 0; i < operations.size(); i++) {
-        String operation = operations.get(i);
-
-        // Ensure that there are enough operands in the list
-        if (i + 1 < operands.size()) {
+    public String performOperation() {
+        // Initialize result variable
+        double result = operands.get(0);
+        StringBuilder operationString = new StringBuilder("[").append(operands.get(0)).append("]");
+        // Iterate through operations and operands lists
+        for (int i = 0; i < operations.size(); i++) {
+            String operation = operations.get(i);
+            // Ensure that there are enough operands in the list
             double operand = operands.get(i + 1);
+            operationString.append(" ").append(operation).append(" [").append(operand).append("]");
 
             // Perform the operation based on the sign
             switch (operation) {
                 case "/":
-                    result = add(result, operand);
+                    result = divide(result, operand);
                     break;
                 case "*":
-                    result = subtract(result, operand);
-                    break;
-                case "+":
                     result = multiply(result, operand);
                     break;
+                case "+":
+                    result = add(result, operand);
+                    break;
                 case "-":
-                    // Handle division by zero exception
-                    try {
-                        result = divide(result, operand);
-                    } catch (ArithmeticException e) {
-                        // Print error message
-                        System.out.println("Error: " + e.getMessage());
-                    }
+                    result = subtract(result, operand);
                     break;
                 default:
                     // Throw exception for invalid operation sign
                     throw new IllegalArgumentException("Invalid operation sign: " + operation);
             }
+        }
+        // Check if the result is a whole number
+        if (result % 1 == 0) {
+            // If it's a whole number, convert it to an integer
+            System.out.println("Performing operation: " + operationString + " = " + result);
+            return String.valueOf((int) result);
         } else {
-            // Handle the case where there are not enough operands
-            throw new IllegalArgumentException("Not enough operands for operation: " + operation);
+            // If it's not a whole number, convert it to a string
+            System.out.println("Performing operation: " + operationString + " = " + result);
+            return String.valueOf(result);
         }
     }
-
-    // Check if the result is a whole number
-    if (result % 1 == 0) {
-        // If it's a whole number, convert it to an integer
-        return String.valueOf((int) result);
-    } else {
-        // If it's not a whole number, convert it to a string
-        return String.valueOf(result);
-    }
-}
-
-
-
 }
